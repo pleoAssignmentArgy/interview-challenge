@@ -7,6 +7,8 @@ We want you to create a user interface using React that solves the following pro
 You are given a vector of heights, these heights form a structure like shown in the following figure.
  
 ![Figure 1](https://github.com/pleo-io/react-challenge/blob/master/figure1.png?raw=true "Figure 1")
+
+Vector : **[2, 5, 1, 3, 1, 2, 1, 7, 7, 6]**
  
 It is raining over the structure.  The water in one cell always flows to the neighboring cell of least height if it is not already occupied by water or a block. A sink is a cell with the property that water never flows away from it. All the neighboring cells that drains into a sink are said to form a basin. 
  
