@@ -10,7 +10,7 @@ You are given a vector of heights, these heights form a structure like shown in 
  
 It is raining over the structure.  The water in one cell always flows to the neighboring cell of least height if it is not already occupied by water or a block. A sink is a cell with the property that water never flows away from it. All the neighboring cells that drains into a sink are said to form a basin. 
  
-![Figure 2](https://github.com/pleo-io/react-challenge/blob/master/figure2.png?raw=true "Figure 2")
+![Figure 2](https://github.com/pleo-io/react-challenge/blob/master/figure1.2.png?raw=true "Figure 2")
  
 Observe that the structure is thereby partitioned into basins. Determine the number of unit of water contained in all basins.
 In the exemple the input for this program is
