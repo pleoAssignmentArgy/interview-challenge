@@ -27,8 +27,8 @@ The goal is to create the most optimal algorithm that given any array will outpu
 Please fork this repo and make your solution there so we can track your solution.
 We want to see your progression through commits (so don’t commit the entire solution in 1 commit), edit the README.md explaining your solution and the app.
 
-Solutions for the algorithmic part of this assignment are possible to find online. Please be advised though that we really do expect to you to try and solve this without just googling the solution. In the end the most interesting thing is not whether you have the _absolute most optimal_ algorithm, but rather your thought process and work process for how you arrived to the solution you did.
+Solutions for the algorithmic part of this assignment are possible to find online. Please be advised though that we really do expect you to try and solve this without just googling the solution. In the end the most interesting thing is not whether you have the _absolute most optimal_ algorithm, but rather your thought process and work process for how you arrived to your solution.
 
-Therefore please also in your README.md explain not just what you solution is, but how it works and how you found it in terms of your work and thought process.
+Therefore please also in your README.md explain not just what your solution is, but how it works and how you found it in terms of your work and thought process.
 
 Happy hacking 😁!
