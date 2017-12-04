@@ -1,6 +1,6 @@
-# Pleo React Challenge
+# Pleo Challenge
 
-We want you to create a user interface using React that solves the following problem.
+We want you to create a user interface using any framework of your choise that solves the following problem.
 
 ## The problem
 
@@ -20,7 +20,7 @@ In the example the input for this program is
 
 ## The objective
 
-The goal is to create the most optimal algorithm that given any array will output the correct units of water. Make a user interface using React to enter the values and visualize the solution.
+The goal is to create the most optimal algorithm that given any array will output the correct units of water. Make a user interface to enter the values and visualize the solution.
 
 ## Instructions
 
