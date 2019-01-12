@@ -14,7 +14,7 @@
 #intelliJ files
 .idea/
 
-./solution/target
+./solution/target/
 
 # Package Files #
 *.jar
