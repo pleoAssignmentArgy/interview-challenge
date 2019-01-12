@@ -2,6 +2,7 @@ package io.pleo.assignment.model;
 
 import java.util.List;
 
+//import static io.pleo.assignment.model.BasinEdgeDetector.detectEdges;
 import static io.pleo.assignment.model.LocalHighsFilter.filterLocalHighs;
 
 public class Basin {
@@ -17,7 +18,19 @@ public class Basin {
 
 	public int calculateWater() {
 		filterLocalHighs(nodes);
-		return 1;
+//		detectEdges(nodes);
+		//update all nodes with edges height
+		//loop through all basin nodes add BasinHeight-node.value
+//		findTheSurface(modes)
+
+		//loop through the basin from left e
+
+		return nodes.stream().map(node -> {
+			int result = node.surface() - node.value();
+			if (result < 0) {
+				return 0;
+			} else return result;
+		}).reduce((integer, integer2) -> integer + integer2).get();
 	}
 
 }

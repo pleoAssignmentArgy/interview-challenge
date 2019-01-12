@@ -8,4 +8,12 @@ public class FixtureGenerator {
 		return new Node(i);
 	}
 
+	public static Node localHighNode(int i) {
+		return new Node(i, true);
+	}
+
+	public static Node node(int value, int surface){
+		return new Node(value, surface);
+	}
+
 }
