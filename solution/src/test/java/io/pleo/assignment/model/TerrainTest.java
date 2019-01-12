@@ -125,7 +125,6 @@ public class TerrainTest {
 		assertThat(subject.cells()[3][3].isWater(), is(true));
 
 
-
 		//and the rest are not water
 		assertThat(subject.cells()[0][0].isWater(), is(false));
 		assertThat(subject.cells()[0][1].isWater(), is(false));
@@ -151,5 +150,38 @@ public class TerrainTest {
 
 	}
 
+	@Test
+	public void counts_waterUnits_plateuau() {
+		int[] input = {1, 1, 1, 1, 1, 1};
+
+		subject = new Terrain(input);
+		subject.rain();
+
+		int waterUnits = subject.countWaterUnits();
+		assertThat(waterUnits, is(0));
+
+	}
+
+	@Test
+	public void counts_waterUnits() {
+		Cell[][] cells = new Cell[4][4];
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (i == j) { //3 water items
+					cells[i][j] = new Cell(new Coordinates(i, j), Cell.WATER);
+				} else {
+					cells[i][j] = new Cell(new Coordinates(i, j), Cell.BLOCK);
+				}
+
+			}
+		}
+
+		subject = new Terrain(cells);
+		subject.rain();
+
+		int waterUnits = subject.countWaterUnits();
+		assertThat(waterUnits, is(3));
+
+	}
 
 }

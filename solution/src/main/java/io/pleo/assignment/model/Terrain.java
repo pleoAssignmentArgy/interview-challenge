@@ -19,6 +19,10 @@ public class Terrain {
 		initialiseTerrain(input);
 	}
 
+	Terrain(Cell[][] cells) {
+		this.cells = cells;
+	}
+
 	private void initialiseTerrain(int[] input) {
 		int numOfColumns = input.length;
 		for (int i = 0; i < numOfColumns; i++) {
@@ -52,8 +56,8 @@ public class Terrain {
 
 	public int countWaterUnits() {
 		int result = 0;
-		for (int i = 0; i < cells.length; i++) {
-			for (int j = 0; j < cells.length; j++) {
+		for (int i = 0; i < cells.length - 1; i++) {
+			for (int j = 0; j < cells[i].length - 1; j++) {
 				if (cells[i][j].isWater()) {
 					result++;
 				}
