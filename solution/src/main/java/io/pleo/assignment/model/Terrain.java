@@ -7,14 +7,14 @@ import static io.pleo.assignment.model.Cell.EMPTY;
 
 public class Terrain {
 
-	private Cell[][] nodes;
+	private Cell[][] cells;
 
 	public Terrain(int[] input) {
 
 		int numOfColumns = input.length;
 		int numOfRows = maxElement(input);
 
-		nodes = emptyTerrain(numOfColumns, numOfRows);
+		cells = emptyTerrain(numOfColumns, numOfRows);
 
 		initialiseTerrain(input);
 	}
@@ -24,7 +24,7 @@ public class Terrain {
 		for (int i = 0; i < numOfColumns; i++) {
 			int numOfBlocks = input[i];
 			for (int j = 0; j < numOfBlocks; j++) {
-				nodes[i][j] = new Cell(BLOCK);
+				cells[i][j] = new Cell(new Coordinates(i, j), BLOCK);
 			}
 		}
 	}
@@ -33,26 +33,42 @@ public class Terrain {
 		Cell[][] result = new Cell[numOfColumns][numOfRows];
 		for (int i = 0; i < numOfColumns; i++) {
 			for (int j = 0; j < numOfRows; j++) {
-				result[i][j] = new Cell(EMPTY);
+				result[i][j] = new Cell(new Coordinates(i, j), EMPTY);
 			}
 		}
 		return result;
 	}
 
 	public void rain() {
-		for (int i = 0; i < nodes.length; i++) {
-			for (int j = 0; j < nodes[i].length; j++) {
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells[i].length; j++) {
+				Cell emptyShortestNeighborForCell = findEmptyShortestNeighborForCell(cells[i][j]);
+				emptyShortestNeighborForCell.water();
 			}
 		}
 	}
 
+	Cell findEmptyShortestNeighborForCell(Cell cell) {
+		int cellRow = cell.coordinates().row();
+		int cellColumn = cell.coordinates().column();
 
-	private leastHeightCellAroundNode(int i, int j) {
+		for (int i = 0; i < cellRow; i++) {
 
+			int columnLeft = cellColumn - 1;
+			int columnRight = cellColumn + 1;
+
+			if (columnLeft >= 0 && cells[columnLeft][i].isEmpty()) { //avoid index out of bounds
+				return cells[columnLeft][i];
+			} else if (columnRight <= cells.length - 1 && cells[columnRight][i].isEmpty()) { //avoid index out of bounds
+				return cells[columnRight][i];
+			}
+		}
+		return cell;
 	}
 
-	public Cell[][] nodes() {
-		return nodes;
+
+	public Cell[][] cells() {
+		return cells;
 	}
 
 	private int maxElement(int[] intArray) {

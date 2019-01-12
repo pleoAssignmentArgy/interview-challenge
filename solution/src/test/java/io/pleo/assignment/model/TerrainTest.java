@@ -43,7 +43,7 @@ public class TerrainTest {
 
 		subject = new Terrain(input);
 
-		Cell[][] cells = subject.nodes();
+		Cell[][] cells = subject.cells();
 
 		assertThat(cells.length, Is.is(2));
 		assertThat(cells[0].length, Is.is(5));
@@ -55,7 +55,7 @@ public class TerrainTest {
 
 		subject = new Terrain(input);
 
-		Cell[][] cells = subject.nodes();
+		Cell[][] cells = subject.cells();
 
 		assertTrue(cells[0][0].isBlock());
 		assertTrue(cells[0][1].isEmpty());
@@ -71,23 +71,28 @@ public class TerrainTest {
 	}
 
 	@Test
-	public void rainShouldCoverAllCellsWithWater_IfNotBlock() {
-		int[] input = {1, 5};
+	public void shouldFindShortestNeighbor_toLeft() {
+		int[] input = {1, 5, 4};
 		subject = new Terrain(input);
-		subject.rain();
 
-		Cell[][] cells = subject.nodes();
+		Cell cell = subject.cells()[1][4];
 
-		assertTrue(cells[0][0].isBlock());
-		assertTrue(cells[0][1].isWater());
-		assertTrue(cells[0][2].isWater());
-		assertTrue(cells[0][3].isWater());
-		assertTrue(cells[0][4].isWater());
+		Cell shortestNeighbor = subject.findEmptyShortestNeighborForCell(cell);
 
-		assertTrue(cells[1][0].isBlock());
-		assertTrue(cells[1][1].isBlock());
-		assertTrue(cells[1][2].isBlock());
-		assertTrue(cells[1][3].isBlock());
-		assertTrue(cells[1][4].isBlock());
+		assertThat(shortestNeighbor.coordinates().column(), Is.is(0));
+		assertThat(shortestNeighbor.coordinates().row(), Is.is(1));
+	}
+
+	@Test
+	public void shouldFindShortestNeighbor_toRight() {
+		int[] input = {5, 4, 1};
+		subject = new Terrain(input);
+
+		Cell cell = subject.cells()[1][4];
+
+		Cell shortestNeighbor = subject.findEmptyShortestNeighborForCell(cell);
+
+		assertThat(shortestNeighbor.coordinates().column(), Is.is(2));
+		assertThat(shortestNeighbor.coordinates().row(), Is.is(1));
 	}
 }

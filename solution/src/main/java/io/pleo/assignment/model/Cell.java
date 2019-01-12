@@ -6,13 +6,15 @@ public class Cell {
 	public static final int BLOCK = 1;
 	public static final int WATER = 2;
 
+	private final Coordinates coordinates;
 	private int content;
 
-	public Cell(int content) {
+	public Cell(Coordinates coordinates, int content) {
 		this.content = content;
+		this.coordinates = coordinates;
 	}
 
-	public boolean isEmpty(){
+	public boolean isEmpty() {
 		return !isWater() && !isBlock();
 	}
 
@@ -24,11 +26,15 @@ public class Cell {
 		return content == WATER;
 	}
 
-	public void water(){
+	public void water() {
 		content = WATER;
 	}
 
 	public int content() {
 		return content;
+	}
+
+	public Coordinates coordinates() {
+		return coordinates;
 	}
 }
