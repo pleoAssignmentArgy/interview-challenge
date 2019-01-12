@@ -37,4 +37,9 @@ public class Cell {
 	public Coordinates coordinates() {
 		return coordinates;
 	}
+
+	@Override
+	public String toString() {
+		return "" + content;
+	}
 }

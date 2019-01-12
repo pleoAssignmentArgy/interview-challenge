@@ -97,7 +97,7 @@ public class TerrainTest {
 	}
 
 	@Test
-	public void shouldRain_fillsSingleBasinWithWater() {
+	public void rain_fillsSingleBasinWithWater() {
 		int[] input = {3, 1, 3};
 		subject = new Terrain(input);
 		subject.rain();
@@ -107,11 +107,12 @@ public class TerrainTest {
 	}
 
 	@Test
-	public void shouldRain_fillsMultipleBasinsWithWater() {
+	public void rain_fillsMultipleBasinsWithWater() {
 		int[] input = {4, 1, 2, 1, 5};
 		subject = new Terrain(input);
 		subject.rain();
 
+		subject.print();
 
 		assertThat(subject.cells()[1][1].isWater(), is(true));
 		assertThat(subject.cells()[1][2].isWater(), is(true));
@@ -125,7 +126,7 @@ public class TerrainTest {
 		assertThat(subject.cells()[3][3].isWater(), is(true));
 
 
-		//and the rest are not water
+//		and the rest are not water
 		assertThat(subject.cells()[0][0].isWater(), is(false));
 		assertThat(subject.cells()[0][1].isWater(), is(false));
 		assertThat(subject.cells()[0][2].isWater(), is(false));

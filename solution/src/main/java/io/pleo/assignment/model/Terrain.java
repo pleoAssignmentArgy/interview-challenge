@@ -35,30 +35,46 @@ public class Terrain {
 
 	static Cell[][] emptyTerrain(int numOfColumns, int numOfRows) {
 		Cell[][] result = new Cell[numOfColumns][numOfRows];
-		for (int i = 0; i < numOfColumns; i++) {
-			for (int j = 0; j < numOfRows; j++) {
-				result[i][j] = new Cell(new Coordinates(i, j), EMPTY);
+		for (int column = 0; column < numOfColumns; column++) {
+			for (int row = 0; row < numOfRows; row++) {
+				result[column][row] = new Cell(new Coordinates(column, row), EMPTY);
 			}
 		}
 		return result;
 	}
 
 	public void rain() {
-		for (int i = 0; i < cells.length; i++) {
-			for (int j = 0; j < cells[i].length; j++) {
-				Cell shortestNeighbor = findShortestNeighborForCell(cells[i][j]);
-				if (shortestNeighbor.isEmpty()) {
-					shortestNeighbor.water();
+
+		for (int column = 0; column < cells.length; column++) {
+			for (int row = cells[column].length - 1; row > 0; row--) {
+				Cell current = cells[column][row];
+				if (current.isBlock() || current.isWater()) {
+					Cell shortestNeighbor = findShortestNeighborForCell(current);
+					if (shortestNeighbor != null) {
+						if (shortestNeighbor.isEmpty()) {
+							shortestNeighbor.water();
+						}
+					}
 				}
 			}
 		}
 	}
 
+
+	public void print() {
+		for (int column = 0; column < cells.length; column++) {
+			for (int row = 0; row < cells[column].length; row++) {
+				System.out.print(cells[column][row]);
+			}
+			System.out.println();
+		}
+	}
+
 	public int countWaterUnits() {
 		int result = 0;
-		for (int i = 0; i < cells.length - 1; i++) {
-			for (int j = 0; j < cells[i].length - 1; j++) {
-				if (cells[i][j].isWater()) {
+		for (int column = 0; column < cells.length; column++) {
+			for (int row = 0; row < cells[column].length; row++) {
+				if (cells[column][row].isWater()) {
 					result++;
 				}
 			}
@@ -70,18 +86,20 @@ public class Terrain {
 		int cellRow = cell.coordinates().row();
 		int cellColumn = cell.coordinates().column();
 
-		for (int i = 0; i < cellRow; i++) {
-
+		for (int row = 0; row < cellRow; row++) {
 			int columnLeft = cellColumn - 1;
 			int columnRight = cellColumn + 1;
+			int rowDown = row - 1;
 
-			if (columnLeft >= 0 && cells[columnLeft][i].isEmpty()) { //avoid index out of bounds
-				return cells[columnLeft][i];
-			} else if (columnRight <= cells.length - 1 && cells[columnRight][i].isEmpty()) { //avoid index out of bounds
-				return cells[columnRight][i];
+			if (rowDown >= 0) {
+				if (columnLeft >= 0 && cells[columnLeft][rowDown].isEmpty()) { //avoid index out of bounds
+					return cells[columnLeft][rowDown];
+				} else if (columnRight <= cells.length - 1 && cells[columnRight][rowDown].isEmpty()) { //avoid index out of bounds
+					return cells[columnRight][rowDown];
+				}
 			}
 		}
-		return cell;
+		return null;
 	}
 
 
