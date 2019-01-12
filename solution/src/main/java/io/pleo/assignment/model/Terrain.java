@@ -41,13 +41,25 @@ public class Terrain {
 
 	public void rain() {
 		for (int i = 0; i < cells.length; i++) {
-			for(int j = 0; j<cells[i].length ; j++){
+			for (int j = 0; j < cells[i].length; j++) {
 				Cell shortestNeighbor = findShortestNeighborForCell(cells[i][j]);
 				if (shortestNeighbor.isEmpty()) {
 					shortestNeighbor.water();
 				}
 			}
 		}
+	}
+
+	public int countWaterUnits() {
+		int result = 0;
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells.length; j++) {
+				if (cells[i][j].isWater()) {
+					result++;
+				}
+			}
+		}
+		return result;
 	}
 
 	Cell findShortestNeighborForCell(Cell cell) {
