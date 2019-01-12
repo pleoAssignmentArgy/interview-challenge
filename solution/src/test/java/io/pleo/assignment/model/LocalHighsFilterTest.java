@@ -15,7 +15,10 @@ public class LocalHighsFilterTest {
 
 	@Test
 	public void shouldDetectLocalHighs_when3NodesInBasin() {
-		List<Node> input = asList(node(2), node(1), node(2));
+		List<Node> input = asList(
+				node(2,0),
+				node(1,1),
+				node(2,2));
 		subject = new LocalHighsFilter();
 
 		subject.filterLocalHighs(input);
@@ -27,7 +30,11 @@ public class LocalHighsFilterTest {
 
 	@Test()
 	public void shouldNotDetectLocalHighs_when3NodesInBasinAndNoHighs() {
-		List<Node> input = asList(node(1), node(2), node(3));
+		List<Node> input = asList(
+				node(1,0),
+				node(2,1),
+				node(3,2)
+		);
 		subject.filterLocalHighs(input);
 
 		assertFalse(input.get(0).localHigh());
@@ -37,7 +44,11 @@ public class LocalHighsFilterTest {
 
 	@Test()
 	public void shouldDetectLocalHighs_whenMoreThan3NodesInBasin_regular() {
-		List<Node> input = asList( node(1), node(2), node(5), node(1));
+		List<Node> input = asList(
+				node(1, 0),
+				node(2, 1),
+				node(5, 2),
+				node(1,3));
 		subject.filterLocalHighs(input);
 
 		assertFalse(input.get(0).localHigh());
@@ -48,7 +59,11 @@ public class LocalHighsFilterTest {
 
 	@Test()
 	public void shouldDetectLocalHighs_whenMoreThan3NodesInBasin_rightnode() {
-		List<Node> input = asList( node(2), node(5), node(1), node(3));
+		List<Node> input = asList(
+				node(2, 0),
+				node(5, 1),
+				node(1,2),
+				node(3,3));
 		subject.filterLocalHighs(input);
 
 		assertFalse(input.get(0).localHigh());
@@ -60,16 +75,16 @@ public class LocalHighsFilterTest {
 	@Test()
 	public void shouldDetectLocalHighs_whenMoreThan3NodesInBasin_rightnode2() {
 		List<Node> input = asList(
-				node(2),
-				node(5),
-				node(1),
-				node(3),
-				node(1),
-				node(1),
-				node(2),
-				node(7),
-				node(7),
-				node(6));
+				node(2, 0),
+				node(5,1),
+				node(1,2),
+				node(3,3),
+				node(1,4),
+				node(1,5),
+				node(2,6),
+				node(7,7),
+				node(7,8),
+				node(6,9));
 		subject.filterLocalHighs(input);
 
 		assertFalse(input.get(0).localHigh());
@@ -87,7 +102,12 @@ public class LocalHighsFilterTest {
 
 	@Test()
 	public void shouldDetectLocalHighs_whenMoreThan3NodesInBasin_RightestNodeCase() {
-		List<Node> input = asList(node(1), node(2), node(7), node(7));
+		List<Node> input = asList(
+				node(1,0),
+				node(2,1),
+				node(7,2),
+				node(7,3)
+		);
 		subject.filterLocalHighs(input);
 
 		assertFalse(input.get(0).localHigh());

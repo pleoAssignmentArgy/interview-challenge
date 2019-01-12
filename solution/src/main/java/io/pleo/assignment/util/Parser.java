@@ -28,8 +28,8 @@ public class Parser {
 
 	private static List<Node> createNodes(String[] args) {
 		ArrayList res = new ArrayList();
-		for (String a : args) {
-			res.add(new Node(Integer.parseInt(a)));
+		for (int i = 0; i < args.length; i++) {
+			res.add(new Node(Integer.parseInt(args[i]), i));
 		}
 		return res;
 	}
