@@ -41,14 +41,16 @@ public class Terrain {
 
 	public void rain() {
 		for (int i = 0; i < cells.length; i++) {
-			for (int j = 0; j < cells[i].length; j++) {
-				Cell emptyShortestNeighborForCell = findEmptyShortestNeighborForCell(cells[i][j]);
-				emptyShortestNeighborForCell.water();
+			for(int j = 0; j<cells[i].length ; j++){
+				Cell shortestNeighbor = findShortestNeighborForCell(cells[i][j]);
+				if (shortestNeighbor.isEmpty()) {
+					shortestNeighbor.water();
+				}
 			}
 		}
 	}
 
-	Cell findEmptyShortestNeighborForCell(Cell cell) {
+	Cell findShortestNeighborForCell(Cell cell) {
 		int cellRow = cell.coordinates().row();
 		int cellColumn = cell.coordinates().column();
 

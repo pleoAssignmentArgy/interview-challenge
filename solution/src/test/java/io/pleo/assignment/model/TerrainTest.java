@@ -1,8 +1,8 @@
 package io.pleo.assignment.model;
 
-import org.hamcrest.core.Is;
 import org.junit.Test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -18,8 +18,8 @@ public class TerrainTest {
 
 		Cell[][] cells = Terrain.emptyTerrain(numOfColumns, numOfRows);
 
-		assertThat(cells.length, Is.is(numOfColumns));
-		assertThat(cells[0].length, Is.is(numOfRows));
+		assertThat(cells.length, is(numOfColumns));
+		assertThat(cells[0].length, is(numOfRows));
 	}
 
 	@Test
@@ -45,8 +45,8 @@ public class TerrainTest {
 
 		Cell[][] cells = subject.cells();
 
-		assertThat(cells.length, Is.is(2));
-		assertThat(cells[0].length, Is.is(5));
+		assertThat(cells.length, is(2));
+		assertThat(cells[0].length, is(5));
 	}
 
 	@Test
@@ -77,10 +77,10 @@ public class TerrainTest {
 
 		Cell cell = subject.cells()[1][4];
 
-		Cell shortestNeighbor = subject.findEmptyShortestNeighborForCell(cell);
+		Cell shortestNeighbor = subject.findShortestNeighborForCell(cell);
 
-		assertThat(shortestNeighbor.coordinates().column(), Is.is(0));
-		assertThat(shortestNeighbor.coordinates().row(), Is.is(1));
+		assertThat(shortestNeighbor.coordinates().column(), is(0));
+		assertThat(shortestNeighbor.coordinates().row(), is(1));
 	}
 
 	@Test
@@ -90,9 +90,66 @@ public class TerrainTest {
 
 		Cell cell = subject.cells()[1][4];
 
-		Cell shortestNeighbor = subject.findEmptyShortestNeighborForCell(cell);
+		Cell shortestNeighbor = subject.findShortestNeighborForCell(cell);
 
-		assertThat(shortestNeighbor.coordinates().column(), Is.is(2));
-		assertThat(shortestNeighbor.coordinates().row(), Is.is(1));
+		assertThat(shortestNeighbor.coordinates().column(), is(2));
+		assertThat(shortestNeighbor.coordinates().row(), is(1));
 	}
+
+	@Test
+	public void shouldRain_fillsSingleBasinWithWater() {
+		int[] input = {3, 1, 3};
+		subject = new Terrain(input);
+		subject.rain();
+
+		assertThat(subject.cells()[1][1].isWater(), is(true));
+		assertThat(subject.cells()[1][2].isWater(), is(true));
+	}
+
+	@Test
+	public void shouldRain_fillsMultipleBasinsWithWater() {
+		int[] input = {4, 1, 2, 1, 5};
+		subject = new Terrain(input);
+		subject.rain();
+
+
+		assertThat(subject.cells()[1][1].isWater(), is(true));
+		assertThat(subject.cells()[1][2].isWater(), is(true));
+		assertThat(subject.cells()[1][3].isWater(), is(true));
+
+		assertThat(subject.cells()[2][2].isWater(), is(true));
+		assertThat(subject.cells()[2][3].isWater(), is(true));
+
+		assertThat(subject.cells()[3][1].isWater(), is(true));
+		assertThat(subject.cells()[3][2].isWater(), is(true));
+		assertThat(subject.cells()[3][3].isWater(), is(true));
+
+
+
+		//and the rest are not water
+		assertThat(subject.cells()[0][0].isWater(), is(false));
+		assertThat(subject.cells()[0][1].isWater(), is(false));
+		assertThat(subject.cells()[0][2].isWater(), is(false));
+		assertThat(subject.cells()[0][3].isWater(), is(false));
+		assertThat(subject.cells()[0][4].isWater(), is(false));
+
+		assertThat(subject.cells()[1][0].isWater(), is(false));
+		assertThat(subject.cells()[1][4].isWater(), is(false));
+
+		assertThat(subject.cells()[2][0].isWater(), is(false));
+		assertThat(subject.cells()[2][1].isWater(), is(false));
+		assertThat(subject.cells()[2][4].isWater(), is(false));
+
+		assertThat(subject.cells()[3][0].isWater(), is(false));
+		assertThat(subject.cells()[3][4].isWater(), is(false));
+
+		assertThat(subject.cells()[4][0].isWater(), is(false));
+		assertThat(subject.cells()[4][1].isWater(), is(false));
+		assertThat(subject.cells()[4][2].isWater(), is(false));
+		assertThat(subject.cells()[4][3].isWater(), is(false));
+		assertThat(subject.cells()[4][4].isWater(), is(false));
+
+	}
+
+
 }
