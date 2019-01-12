@@ -2,18 +2,17 @@ package io.pleo.assignment.util;
 
 import io.pleo.assignment.model.Node;
 
+import static io.pleo.assignment.model.Node.BLOCK;
+import static io.pleo.assignment.model.Node.WATER;
+
 public class FixtureGenerator {
 
-	public static Node node(int i, int locationInBasin) {
-		return new Node(i, locationInBasin);
+	public static Node block() {
+		return new Node(BLOCK);
 	}
 
-	public static Node localHighNode(int i ) {
-		return new Node(i, true);
-	}
-
-	public static Node node(int value, int surface, int locationInBasin){
-		return new Node(value, locationInBasin, surface);
+	public static Node water() {
+		return new Node(WATER);
 	}
 
 }

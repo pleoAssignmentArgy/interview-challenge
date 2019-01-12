@@ -2,49 +2,27 @@ package io.pleo.assignment.model;
 
 public class Node {
 
-	private int locationInBasin;
-	private int value;
-	private boolean isLocalHigh;
-	private int surface;
+	public static final int EMPTY = 0;
+	public static final int BLOCK = 1;
+	public static final int WATER = 2;
 
-	public Node(int value, int locationInBasin) {
-		this.value = value;
-		this.isLocalHigh = false;
-		this.locationInBasin = locationInBasin;
-	}
-	public Node(int value, int locationInBasin,  int surface) {
-		this.value = value;
-		this.surface = surface;
-		this.locationInBasin = locationInBasin;
+	private int content;
+
+	public Node(int content) {
+		this.content = content;
 	}
 
-	public Node(int value, boolean localHigh) {
-		this.value = value;
-		this.isLocalHigh = localHigh;
+	public boolean isEmpty(){
+		return !containsWater() && !containsBlock();
 	}
 
+	private boolean containsBlock() {
+		return content == BLOCK;
 
-	public int value() {
-		return value;
 	}
 
-	public void localHigh(boolean localHigh) {
-		this.isLocalHigh = localHigh;
+	private boolean containsWater() {
+		return content == WATER;
 	}
 
-	public boolean localHigh() {
-		return isLocalHigh;
-	}
-
-	public int locationInBasin() {
-		return locationInBasin;
-	}
-
-	public int surface() {
-		return surface;
-	}
-
-	public void surface(int surface) {
-		this.surface = surface;
-	}
 }

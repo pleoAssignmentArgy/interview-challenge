@@ -1,6 +1,5 @@
 package io.pleo.assignment;
 
-import io.pleo.assignment.model.Basin;
 import io.pleo.assignment.model.Node;
 
 import java.util.List;
@@ -12,16 +11,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		if (args != null) {
-			List<Node> nodes = parse(args);
-
-			Basin basin = new Basin(nodes);
-			basin.calculateWater();
-
+			parse(args);
 		} else {
 			printErrorAndExit();
 		}
 	}
-
 
 
 	private static void printErrorAndExit() {

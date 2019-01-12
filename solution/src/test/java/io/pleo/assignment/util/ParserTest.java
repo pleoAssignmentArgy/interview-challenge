@@ -1,10 +1,8 @@
 package io.pleo.assignment.util;
 
 import io.pleo.assignment.model.Node;
-import org.hamcrest.core.Is;
+import io.pleo.assignment.model.Terrain;
 import org.junit.Test;
-
-import java.util.List;
 
 import static io.pleo.assignment.util.Parser.parse;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -27,10 +25,13 @@ public class ParserTest {
 		parse(new String[]{"1,2,3"});
 	}
 
-	@Test()
-	public void shouldHandle_ProperlyFormatedInput() {
-		List<Node> parse = parse(new String[]{"[1,2,3]"});
-		assertThat(parse.size(), is(3));
-	}
+	@Test
+	public void shouldInputToInt_properly() {
+		int[] res = Parser.inputToIntArray(new String[]{"1","2","3"});
 
+		assertThat(res[0], is(1));
+		assertThat(res[1], is(2));
+		assertThat(res[2], is(3));
+
+	}
 }
