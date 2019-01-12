@@ -1,7 +1,5 @@
 package io.pleo.assignment.util;
 
-import io.pleo.assignment.model.Node;
-import io.pleo.assignment.model.Terrain;
 import org.junit.Test;
 
 import static io.pleo.assignment.util.Parser.parse;

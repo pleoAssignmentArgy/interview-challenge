@@ -13,16 +13,22 @@ public class Node {
 	}
 
 	public boolean isEmpty(){
-		return !containsWater() && !containsBlock();
+		return !isWater() && !isBlock();
 	}
 
-	private boolean containsBlock() {
+	public boolean isBlock() {
 		return content == BLOCK;
-
 	}
 
-	private boolean containsWater() {
+	public boolean isWater() {
 		return content == WATER;
 	}
 
+	public void water(){
+		content = WATER;
+	}
+
+	public int content() {
+		return content;
+	}
 }
