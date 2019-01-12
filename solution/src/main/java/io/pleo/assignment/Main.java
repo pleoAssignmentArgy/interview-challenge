@@ -1,9 +1,5 @@
 package io.pleo.assignment;
 
-import io.pleo.assignment.model.Node;
-
-import java.util.List;
-
 import static io.pleo.assignment.util.Parser.parse;
 import static java.lang.System.exit;
 

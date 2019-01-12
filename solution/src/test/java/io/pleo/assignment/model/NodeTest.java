@@ -6,17 +6,17 @@ import static org.junit.Assert.*;
 
 public class NodeTest {
 
-	private Node subject;
+	private Cell subject;
 
 	@Test
 	public void shouldNotReportEmpty_ifNodeContainsWater(){
-		subject = new Node(Node.WATER);
+		subject = new Cell(Cell.WATER);
 		assertFalse(subject.isEmpty());
 	}
 
 	@Test
 	public void shouldNotReportEmpty_ifNodeContainsBlock(){
-		subject = new Node(Node.BLOCK);
+		subject = new Cell(Cell.BLOCK);
 		assertFalse(subject.isEmpty());
 	}
 }

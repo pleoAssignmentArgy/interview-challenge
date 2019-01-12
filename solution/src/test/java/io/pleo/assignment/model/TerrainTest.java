@@ -16,10 +16,10 @@ public class TerrainTest {
 		int numOfRows = 2;
 		int numOfColumns = 3;
 
-		Node[][] nodes = Terrain.emptyTerrain(numOfColumns, numOfRows);
+		Cell[][] cells = Terrain.emptyTerrain(numOfColumns, numOfRows);
 
-		assertThat(nodes.length, Is.is(numOfColumns));
-		assertThat(nodes[0].length, Is.is(numOfRows));
+		assertThat(cells.length, Is.is(numOfColumns));
+		assertThat(cells[0].length, Is.is(numOfRows));
 	}
 
 	@Test
@@ -28,11 +28,11 @@ public class TerrainTest {
 		int numOfRows = 2;
 		int numOfColumns = 3;
 
-		Node[][] nodes = Terrain.emptyTerrain(numOfColumns, numOfRows);
+		Cell[][] cells = Terrain.emptyTerrain(numOfColumns, numOfRows);
 
 		for (int i = 0; i < numOfColumns; i++) {
 			for (int j = 0; j < numOfRows; j++) {
-				assertTrue(nodes[i][j].isEmpty());
+				assertTrue(cells[i][j].isEmpty());
 			}
 		}
 	}
@@ -43,10 +43,10 @@ public class TerrainTest {
 
 		subject = new Terrain(input);
 
-		Node[][] nodes = subject.nodes();
+		Cell[][] cells = subject.nodes();
 
-		assertThat(nodes.length, Is.is(2));
-		assertThat(nodes[0].length, Is.is(5));
+		assertThat(cells.length, Is.is(2));
+		assertThat(cells[0].length, Is.is(5));
 	}
 
 	@Test
@@ -55,39 +55,39 @@ public class TerrainTest {
 
 		subject = new Terrain(input);
 
-		Node[][] nodes = subject.nodes();
+		Cell[][] cells = subject.nodes();
 
-		assertTrue(nodes[0][0].isBlock());
-		assertTrue(nodes[0][1].isEmpty());
-		assertTrue(nodes[0][2].isEmpty());
-		assertTrue(nodes[0][3].isEmpty());
-		assertTrue(nodes[0][4].isEmpty());
+		assertTrue(cells[0][0].isBlock());
+		assertTrue(cells[0][1].isEmpty());
+		assertTrue(cells[0][2].isEmpty());
+		assertTrue(cells[0][3].isEmpty());
+		assertTrue(cells[0][4].isEmpty());
 
-		assertTrue(nodes[1][0].isBlock());
-		assertTrue(nodes[1][1].isBlock());
-		assertTrue(nodes[1][2].isBlock());
-		assertTrue(nodes[1][3].isBlock());
-		assertTrue(nodes[1][4].isBlock());
+		assertTrue(cells[1][0].isBlock());
+		assertTrue(cells[1][1].isBlock());
+		assertTrue(cells[1][2].isBlock());
+		assertTrue(cells[1][3].isBlock());
+		assertTrue(cells[1][4].isBlock());
 	}
 
-//	@Test
-//	public void rainShouldCoverAllCellsWithWater_IfNotBlock() {
-//		int[] input = {1, 5};
-//		subject = new Terrain(input);
-//		subject.rain();
-//
-//		Node[][] nodes = subject.nodes();
-//
-//		assertTrue(nodes[0][0].isBlock());
-//		assertTrue(nodes[0][1].isWater());
-//		assertTrue(nodes[0][2].isWater());
-//		assertTrue(nodes[0][3].isWater());
-//		assertTrue(nodes[0][4].isWater());
-//
-//		assertTrue(nodes[1][0].isBlock());
-//		assertTrue(nodes[1][1].isBlock());
-//		assertTrue(nodes[1][2].isBlock());
-//		assertTrue(nodes[1][3].isBlock());
-//		assertTrue(nodes[1][4].isBlock());
-//	}
+	@Test
+	public void rainShouldCoverAllCellsWithWater_IfNotBlock() {
+		int[] input = {1, 5};
+		subject = new Terrain(input);
+		subject.rain();
+
+		Cell[][] cells = subject.nodes();
+
+		assertTrue(cells[0][0].isBlock());
+		assertTrue(cells[0][1].isWater());
+		assertTrue(cells[0][2].isWater());
+		assertTrue(cells[0][3].isWater());
+		assertTrue(cells[0][4].isWater());
+
+		assertTrue(cells[1][0].isBlock());
+		assertTrue(cells[1][1].isBlock());
+		assertTrue(cells[1][2].isBlock());
+		assertTrue(cells[1][3].isBlock());
+		assertTrue(cells[1][4].isBlock());
+	}
 }

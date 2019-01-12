@@ -2,12 +2,12 @@ package io.pleo.assignment.model;
 
 import java.util.Arrays;
 
-import static io.pleo.assignment.model.Node.BLOCK;
-import static io.pleo.assignment.model.Node.EMPTY;
+import static io.pleo.assignment.model.Cell.BLOCK;
+import static io.pleo.assignment.model.Cell.EMPTY;
 
 public class Terrain {
 
-	private Node[][] nodes;
+	private Cell[][] nodes;
 
 	public Terrain(int[] input) {
 
@@ -24,32 +24,34 @@ public class Terrain {
 		for (int i = 0; i < numOfColumns; i++) {
 			int numOfBlocks = input[i];
 			for (int j = 0; j < numOfBlocks; j++) {
-				nodes[i][j] = new Node(BLOCK);
+				nodes[i][j] = new Cell(BLOCK);
 			}
 		}
 	}
 
-	static Node[][] emptyTerrain(int numOfColumns, int numOfRows) {
-		Node[][] result = new Node[numOfColumns][numOfRows];
+	static Cell[][] emptyTerrain(int numOfColumns, int numOfRows) {
+		Cell[][] result = new Cell[numOfColumns][numOfRows];
 		for (int i = 0; i < numOfColumns; i++) {
 			for (int j = 0; j < numOfRows; j++) {
-				result[i][j] = new Node(EMPTY);
+				result[i][j] = new Cell(EMPTY);
 			}
 		}
 		return result;
 	}
 
 	public void rain() {
-//		for (int i = 0; i < nodes.length; i++) {
-//			for (int j = 0; j < nodes[i].length; j++) {
-//				if(nodes[i][j].isEmpty()){
-//					nodes[i][j].water();
-//				}
-//			}
-//		}
+		for (int i = 0; i < nodes.length; i++) {
+			for (int j = 0; j < nodes[i].length; j++) {
+			}
+		}
 	}
 
-	public Node[][] nodes() {
+
+	private leastHeightCellAroundNode(int i, int j) {
+
+	}
+
+	public Cell[][] nodes() {
 		return nodes;
 	}
 

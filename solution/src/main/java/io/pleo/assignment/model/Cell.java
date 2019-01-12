@@ -1,6 +1,6 @@
 package io.pleo.assignment.model;
 
-public class Node {
+public class Cell {
 
 	public static final int EMPTY = 0;
 	public static final int BLOCK = 1;
@@ -8,7 +8,7 @@ public class Node {
 
 	private int content;
 
-	public Node(int content) {
+	public Cell(int content) {
 		this.content = content;
 	}
 
