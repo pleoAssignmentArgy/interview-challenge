@@ -22,26 +22,30 @@ public class Basin {
 
 	void filterLocalHighs() {
 		if (nodes.size() == 3) {
-			if (nodes.get(0).value() > nodes.get(1).value() && nodes.get(2).value() > nodes.get(1).value()) {
-				nodes.get(0).localHigh(true);
-				nodes.get(2).localHigh(true);
-			}
+			localHighsForThreeNodes();
 		} else {
 			for (int i = 2; i < nodes.size(); i++) {
-				Node left = nodes.get(i - 2);
-				Node middle = nodes.get(i - 1);
-				Node right = nodes.get(i);
-				localHighs(left, middle, right);
-				if (right.value() > middle.value() && i == nodes.size() -1) {
-					right.localHigh(true);
-				}
+				localHighs(i);
 			}
 		}
 	}
 
-	private void localHighs(Node left, Node middle, Node right) {
+	private void localHighs(int i) {
+		Node left = nodes.get(i - 2);
+		Node middle = nodes.get(i - 1);
+		Node right = nodes.get(i);
 		if (highestInMiddle(left.value(), middle.value(), right.value())) {
 			middle.localHigh(true);
+		}
+		if (right.value() > middle.value() && i == nodes.size() - 1) {
+			right.localHigh(true);
+		}
+	}
+
+	private void localHighsForThreeNodes() {
+		if (nodes.get(0).value() > nodes.get(1).value() && nodes.get(2).value() > nodes.get(1).value()) {
+			nodes.get(0).localHigh(true);
+			nodes.get(2).localHigh(true);
 		}
 	}
 
