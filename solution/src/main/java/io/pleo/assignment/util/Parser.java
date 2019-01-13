@@ -1,6 +1,6 @@
 package io.pleo.assignment.util;
 
-import io.pleo.assignment.model.Terrain;
+import io.pleo.assignment.model.Structure;
 
 import static java.lang.Integer.parseInt;
 
@@ -9,14 +9,14 @@ public class Parser {
 	private Parser() { //no instances allowed
 	}
 
-	public static Terrain parse(String[] args) {
+	public static Structure parse(String[] args) {
 		if (args == null) {
 			throw new IllegalArgumentException("Bad Input");
 		}
 		String vector = args[0];
 		if (properlyFormatted(vector)) {
 			int[] intArray = inputToIntArray(vector.substring(1, vector.length() - 1).split(","));
-			return new Terrain(intArray);
+			return new Structure(intArray);
 		} else {
 			throw new IllegalArgumentException("Bad Input");
 		}

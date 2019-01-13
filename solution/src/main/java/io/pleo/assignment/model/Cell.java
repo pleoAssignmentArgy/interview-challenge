@@ -42,4 +42,15 @@ public class Cell {
 	public String toString() {
 		return "" + content;
 	}
+
+	public String prettyContentString() {
+		if (content == BLOCK) {
+			return "BLOCK";
+		} else if (content == WATER) {
+			return "WATER";
+		} else {
+			return "EMPTY";
+		}
+
+	}
 }
