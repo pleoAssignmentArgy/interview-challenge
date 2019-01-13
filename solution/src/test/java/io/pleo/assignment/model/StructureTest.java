@@ -259,7 +259,7 @@ public class StructureTest {
 		subject.rain();
 
 		int waterUnits = subject.countWaterUnits();
-		assertThat(waterUnits, is(3));
+		assertThat(waterUnits, is(4));
 
 	}
 

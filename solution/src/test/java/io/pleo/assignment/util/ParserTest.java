@@ -14,17 +14,17 @@ public class ParserTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void shouldHandle_BadFormatedInput_noCommas() {
+	public void shouldHandle_BadFormattedInput_noCommas() {
 		parse(new String[]{"[1 2 3]"});
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void shouldHandle_BadFormatedInput_noBrackets() {
+	public void shouldHandle_BadFormattedInput_noBrackets() {
 		parse(new String[]{"1,2,3"});
 	}
 
 	@Test
-	public void shouldInputToInt_properly() {
+	public void shouldConvertStringArrayInputToIntArray_properly() {
 		int[] res = Parser.inputToIntArray(new String[]{"1","2","3"});
 
 		assertThat(res[0], is(1));
