@@ -269,4 +269,25 @@ public class StructureTest {
 		assertThat(waterUnits, is(17));
 
 	}
+
+	@Test
+	public void counts_waterUnits_example_HillStructure() {
+		int[] input = {5, 4, 3, 2, 1};
+		subject = new Structure(input);
+		subject.rain();
+
+		int waterUnits = subject.countWaterUnits();
+		assertThat(waterUnits, is(0));
+
+	}
+
+	@Test
+	public void counts_waterUnits_example_PyramidStructure() {
+		int[] input = {1, 3, 5, 2, 1};
+		subject = new Structure(input);
+		subject.rain();
+
+		int waterUnits = subject.countWaterUnits();
+		assertThat(waterUnits, is(0));
+	}
 }

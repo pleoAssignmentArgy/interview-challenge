@@ -19,6 +19,11 @@ public class ParserTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
+	public void shouldHandle_BadFormattedInput_NoNumbers() {
+		parse(new String[]{"[1, chair, 3]"});
+	}
+
+	@Test(expected = IllegalArgumentException.class)
 	public void shouldHandle_BadFormattedInput_noBrackets() {
 		parse(new String[]{"1,2,3"});
 	}
