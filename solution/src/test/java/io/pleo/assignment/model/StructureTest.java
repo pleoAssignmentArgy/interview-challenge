@@ -2,6 +2,8 @@ package io.pleo.assignment.model;
 
 import org.junit.Test;
 
+import static io.pleo.assignment.model.Cell.BLOCK;
+import static io.pleo.assignment.model.Cell.WATER;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -37,7 +39,7 @@ public class StructureTest {
 	}
 
 	@Test
-	public void constructor_GeneratesTableWith_WithCorrectDimensions() {
+	public void constructor_GeneratesTable_WithCorrectDimensions() {
 		int[] input = {1, 5}; //
 
 		subject = new Structure(input);
@@ -97,8 +99,6 @@ public class StructureTest {
 		subject = new Structure(input);
 		subject.rain();
 
-		subject.print();
-
 		assertThat(subject.cells()[1][1].isWater(), is(true));
 		assertThat(subject.cells()[1][2].isWater(), is(true));
 		assertThat(subject.cells()[1][3].isWater(), is(true));
@@ -133,18 +133,13 @@ public class StructureTest {
 		assertThat(subject.cells()[4][2].isWater(), is(false));
 		assertThat(subject.cells()[4][3].isWater(), is(false));
 		assertThat(subject.cells()[4][4].isWater(), is(false));
-
 	}
-
 
 	@Test
 	public void rain_fillsMultipleBasinsWithWater_example2() {
 		int[] input = {2, 5, 1, 3, 1, 2, 1, 7, 7, 6};
 		subject = new Structure(input);
 		subject.rain();
-
-		subject.print();
-
 
 		assertThat(subject.cells()[0][0].isWater(), is(false));
 		assertThat(subject.cells()[0][1].isWater(), is(false));
@@ -244,10 +239,10 @@ public class StructureTest {
 		Cell[][] cells = new Cell[4][4];
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (i == j) { //3 water items
-					cells[i][j] = new Cell(new Coordinates(i, j), Cell.WATER);
+				if (i == j) { //4 water items
+					cells[i][j] = new Cell(new Coordinates(i, j), WATER);
 				} else {
-					cells[i][j] = new Cell(new Coordinates(i, j), Cell.BLOCK);
+					cells[i][j] = new Cell(new Coordinates(i, j), BLOCK);
 				}
 			}
 		}

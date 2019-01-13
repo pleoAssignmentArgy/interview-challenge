@@ -9,13 +9,14 @@ public class Structure {
 
 	private Cell[][] cells;
 
+	private static int NUM_OF_COLUMNS;
+	private static int NUM_OF_ROWS;
+
 	public Structure(int[] input) {
+		NUM_OF_COLUMNS = input.length;
+		NUM_OF_ROWS = maxElement(input);
 
-		int numOfColumns = input.length;
-		int numOfRows = maxElement(input);
-
-		cells = emptyStructure(numOfColumns, numOfRows);
-
+		cells = emptyStructure(NUM_OF_COLUMNS, NUM_OF_ROWS);
 		initialiseStructure(input);
 	}
 
@@ -24,12 +25,13 @@ public class Structure {
 	}
 
 	Structure(Cell[][] cells) {
+		NUM_OF_ROWS = cells[0].length;
+		NUM_OF_COLUMNS = cells.length;
 		this.cells = cells;
 	}
 
 	private void initialiseStructure(int[] input) {
-		int numOfColumns = input.length;
-		for (int i = 0; i < numOfColumns; i++) {
+		for (int i = 0; i < NUM_OF_COLUMNS; i++) {
 			int numOfBlocks = input[i];
 			for (int j = 0; j < numOfBlocks; j++) {
 				cells[i][j].content(BLOCK);
@@ -49,25 +51,24 @@ public class Structure {
 
 
 	public void rain() {
-		int maxRowNumber = cells[0].length;
-		for (int row = 0; row < maxRowNumber; row++) {
+		for (int row = 0; row < NUM_OF_ROWS; row++) {
 			fillWithWater(row);
 		}
 	}
 
 	private void fillWithWater(int row) {
-		for (int column = 0; column < cells.length - 1; column++) {
+		for (int column = 0; column < NUM_OF_COLUMNS; column++) {
 			Cell firstBlockCandidate = cells[column][row];
 
 			if (firstBlockCandidate.isBlock()) {
-				for (int column2 = firstBlockCandidate.coordinates().column(); column2 < cells.length; column2++) {
+				for (int column2 = firstBlockCandidate.coordinates().column(); column2 < NUM_OF_COLUMNS; column2++) {
 
 					Cell emptyCandidate = cells[column2][row];
 					if (emptyCandidate.isEmpty()) {
-						for (int column3 = emptyCandidate.coordinates().column(); column3 < cells.length; column3++) {
+						for (int column3 = emptyCandidate.coordinates().column(); column3 < NUM_OF_COLUMNS; column3++) {
 							Cell secondBlockCandidate = cells[column3][row];
 							if (secondBlockCandidate.isBlock()) {
-								coverWithWaterEmptyInBetween(firstBlockCandidate, secondBlockCandidate);
+								coverWithWaterEmptyCellsBetween(firstBlockCandidate, secondBlockCandidate);
 								firstBlockCandidate = secondBlockCandidate;
 							}
 						}
@@ -77,19 +78,16 @@ public class Structure {
 		}
 	}
 
-	private void coverWithWaterEmptyInBetween(Cell firstBlockCandidate, Cell secondBlockCandidate) {
+	private void coverWithWaterEmptyCellsBetween(Cell firstBlockCandidate, Cell secondBlockCandidate) {
 		int row = firstBlockCandidate.coordinates().row();
 
 		int leftColumn = firstBlockCandidate.coordinates().column();
 		int rightColumn = secondBlockCandidate.coordinates().column();
 
-		for (int i = leftColumn; i < rightColumn; i++) {
-
-			if(columnContainsHole(i)){
+		for (int i = leftColumn; i <= rightColumn; i++) {
+			if (columnContainsHole(i)) {
 				return;
-			}
-
-			if (cells[i][row].isEmpty()) {
+			} else if (cells[i][row].isEmpty()) {
 				cells[i][row].water();
 			}
 		}
@@ -100,8 +98,8 @@ public class Structure {
 	}
 
 	public void print() {
-		for (int column = 0; column < cells.length; column++) {
-			for (int row = 0; row < cells[column].length; row++) {
+		for (int column = 0; column < NUM_OF_COLUMNS; column++) {
+			for (int row = 0; row < NUM_OF_ROWS; row++) {
 				System.out.print(cells[column][row]);
 			}
 			System.out.println();
@@ -109,15 +107,15 @@ public class Structure {
 	}
 
 	public int countWaterUnits() {
-		int result = 0;
-		for (int column = 0; column < cells.length; column++) {
-			for (int row = 0; row < cells[column].length; row++) {
+		int waterUnits = 0;
+		for (int column = 0; column < NUM_OF_COLUMNS; column++) {
+			for (int row = 0; row < NUM_OF_ROWS; row++) {
 				if (cells[column][row].isWater()) {
-					result++;
+					waterUnits++;
 				}
 			}
 		}
-		return result;
+		return waterUnits;
 	}
 
 
