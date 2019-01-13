@@ -12,7 +12,6 @@ public class StructureTest {
 
 	@Test
 	public void emptyTerrain_GeneratesCorrectSizeTable() {
-
 		int numOfRows = 2;
 		int numOfColumns = 3;
 
@@ -38,7 +37,7 @@ public class StructureTest {
 	}
 
 	@Test
-	public void constructorGeneratesTableWith_NumOfColumnMaxNode_NumOfRowNumOfInputElements() {
+	public void constructor_GeneratesTableWith_WithCorrectDimensions() {
 		int[] input = {1, 5}; //
 
 		subject = new Structure(input);
@@ -50,7 +49,7 @@ public class StructureTest {
 	}
 
 	@Test
-	public void constructorGeneratesTableWith_BlocksAppropriately() {
+	public void constructor_GeneratesTable_withEmptyCellsAndBlockCells() {
 		int[] input = {1, 5};
 
 		subject = new Structure(input);
@@ -71,7 +70,7 @@ public class StructureTest {
 	}
 
 	@Test
-	public void rain_fillsSingleBasinWithWater() {
+	public void rain_fillBasinWithWater() {
 		int[] input = {3, 1, 3};
 		subject = new Structure(input);
 		subject.rain();
@@ -82,7 +81,7 @@ public class StructureTest {
 
 
 	@Test
-	public void rain_fillsSingleBasinWithWater_withHole() {
+	public void rain_doesNotfillBasinWithWater_ifThereIsHole() {
 		int[] input = {3, 0, 3};
 		subject = new Structure(input);
 		subject.rain();
@@ -230,7 +229,7 @@ public class StructureTest {
 	}
 
 	@Test
-	public void counts_waterUnits_plateuau() {
+	public void counts_waterUnitsIsZero_inCaseOfFlatStructure() {
 		int[] input = {1, 1, 1, 1, 1, 1};
 
 		subject = new Structure(input);
@@ -238,11 +237,10 @@ public class StructureTest {
 
 		int waterUnits = subject.countWaterUnits();
 		assertThat(waterUnits, is(0));
-
 	}
 
 	@Test
-	public void counts_waterUnits() {
+	public void counts_waterUnits_example() {
 		Cell[][] cells = new Cell[4][4];
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -251,7 +249,6 @@ public class StructureTest {
 				} else {
 					cells[i][j] = new Cell(new Coordinates(i, j), Cell.BLOCK);
 				}
-
 			}
 		}
 
@@ -260,7 +257,6 @@ public class StructureTest {
 
 		int waterUnits = subject.countWaterUnits();
 		assertThat(waterUnits, is(4));
-
 	}
 
 	@Test
@@ -273,5 +269,4 @@ public class StructureTest {
 		assertThat(waterUnits, is(17));
 
 	}
-
 }

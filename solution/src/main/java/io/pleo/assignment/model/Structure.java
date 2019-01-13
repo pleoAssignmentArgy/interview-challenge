@@ -19,6 +19,10 @@ public class Structure {
 		initialiseStructure(input);
 	}
 
+	private int maxElement(int[] intArray) {
+		return Arrays.stream(intArray).max().getAsInt();
+	}
+
 	Structure(Cell[][] cells) {
 		this.cells = cells;
 	}
@@ -28,7 +32,7 @@ public class Structure {
 		for (int i = 0; i < numOfColumns; i++) {
 			int numOfBlocks = input[i];
 			for (int j = 0; j < numOfBlocks; j++) {
-				cells[i][j] = new Cell(new Coordinates(i, j), BLOCK);
+				cells[i][j].content(BLOCK);
 			}
 		}
 	}
@@ -52,7 +56,6 @@ public class Structure {
 	}
 
 	private void fillWithWater(int row) {
-		boolean wateringOccured = false;
 		for (int column = 0; column < cells.length - 1; column++) {
 			Cell firstBlockCandidate = cells[column][row];
 
@@ -122,7 +125,4 @@ public class Structure {
 		return cells;
 	}
 
-	private int maxElement(int[] intArray) {
-		return Arrays.stream(intArray).max().getAsInt();
-	}
 }

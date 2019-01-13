@@ -30,6 +30,5 @@ public class ParserTest {
 		assertThat(res[0], is(1));
 		assertThat(res[1], is(2));
 		assertThat(res[2], is(3));
-
 	}
 }

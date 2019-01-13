@@ -30,6 +30,10 @@ public class Cell {
 		content = WATER;
 	}
 
+	public void content(int content) {
+		this.content = content;
+	}
+
 	public int content() {
 		return content;
 	}
@@ -43,7 +47,7 @@ public class Cell {
 		return "" + content;
 	}
 
-	public String prettyContentString() {
+	public String prettyPrintContent() {
 		if (content == BLOCK) {
 			return "BLOCK";
 		} else if (content == WATER) {
@@ -51,6 +55,5 @@ public class Cell {
 		} else {
 			return "EMPTY";
 		}
-
 	}
 }
