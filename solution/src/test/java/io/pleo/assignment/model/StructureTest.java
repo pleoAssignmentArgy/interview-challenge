@@ -80,6 +80,18 @@ public class StructureTest {
 		assertThat(subject.cells()[1][2].isWater(), is(true));
 	}
 
+
+	@Test
+	public void rain_fillsSingleBasinWithWater_withHole() {
+		int[] input = {3, 0, 3};
+		subject = new Structure(input);
+		subject.rain();
+
+		assertThat(subject.cells()[1][0].isWater(), is(false));
+		assertThat(subject.cells()[1][1].isWater(), is(false));
+		assertThat(subject.cells()[1][2].isWater(), is(false));
+	}
+
 	@Test
 	public void rain_fillsMultipleBasinsWithWater_example1() {
 		int[] input = {4, 1, 2, 1, 5};

@@ -81,10 +81,19 @@ public class Structure {
 		int rightColumn = secondBlockCandidate.coordinates().column();
 
 		for (int i = leftColumn; i < rightColumn; i++) {
+
+			if(columnContainsHole(i)){
+				return;
+			}
+
 			if (cells[i][row].isEmpty()) {
 				cells[i][row].water();
 			}
 		}
+	}
+
+	private boolean columnContainsHole(int column) {
+		return cells[column][0].isEmpty();
 	}
 
 	public void print() {
