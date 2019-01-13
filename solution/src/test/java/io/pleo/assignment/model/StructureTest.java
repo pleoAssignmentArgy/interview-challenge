@@ -251,4 +251,15 @@ public class StructureTest {
 
 	}
 
+	@Test
+	public void counts_waterUnits_example2() {
+		int[] input = {2, 5, 1, 3, 1, 2, 1, 7, 7, 6};
+		subject = new Structure(input);
+		subject.rain();
+
+		int waterUnits = subject.countWaterUnits();
+		assertThat(waterUnits, is(17));
+
+	}
+
 }

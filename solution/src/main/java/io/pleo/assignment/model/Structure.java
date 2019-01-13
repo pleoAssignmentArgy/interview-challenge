@@ -45,26 +45,27 @@ public class Structure {
 
 
 	public void rain() {
-		int maxRows = maxColumn();
-		for (int row = 0; row < maxRows; row++) {
+		int maxRowNumber = cells[0].length;
+		for (int row = 0; row < maxRowNumber; row++) {
 			fillWithWater(row);
 		}
 	}
 
 	private void fillWithWater(int row) {
-		for (int column = 0; column < maxColumn(); column++) {
+		boolean wateringOccured = false;
+		for (int column = 0; column < cells.length - 1; column++) {
 			Cell firstBlockCandidate = cells[column][row];
 
 			if (firstBlockCandidate.isBlock()) {
-				for (int column2 = column; column2 < maxColumn(); column2++) {
+				for (int column2 = firstBlockCandidate.coordinates().column(); column2 < cells.length; column2++) {
 
 					Cell emptyCandidate = cells[column2][row];
-
 					if (emptyCandidate.isEmpty()) {
-						for (int column3 = column2; column3 < maxColumn(); column3++) {
+						for (int column3 = emptyCandidate.coordinates().column(); column3 < cells.length; column3++) {
 							Cell secondBlockCandidate = cells[column3][row];
 							if (secondBlockCandidate.isBlock()) {
 								coverWithWaterEmptyInBetween(firstBlockCandidate, secondBlockCandidate);
+								firstBlockCandidate = secondBlockCandidate;
 							}
 						}
 					}
@@ -73,16 +74,11 @@ public class Structure {
 		}
 	}
 
-	private int maxColumn() {
-		return cells[0].length;
-	}
-
 	private void coverWithWaterEmptyInBetween(Cell firstBlockCandidate, Cell secondBlockCandidate) {
 		int row = firstBlockCandidate.coordinates().row();
 
 		int leftColumn = firstBlockCandidate.coordinates().column();
 		int rightColumn = secondBlockCandidate.coordinates().column();
-		System.out.println("Watering row " + row + ", bw columns " + leftColumn + " and " + rightColumn);
 
 		for (int i = leftColumn; i < rightColumn; i++) {
 			if (cells[i][row].isEmpty()) {
@@ -120,5 +116,4 @@ public class Structure {
 	private int maxElement(int[] intArray) {
 		return Arrays.stream(intArray).max().getAsInt();
 	}
-
 }
