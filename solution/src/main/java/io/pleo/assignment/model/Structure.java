@@ -100,8 +100,8 @@ public class Structure {
 	public void print() {
 		System.out.println("Structure: ");
 		System.out.println("-----------");
-		for (int column = 0; column < NUM_OF_COLUMNS; column++) {
-			for (int row = 0; row < NUM_OF_ROWS; row++) {
+		for (int row = NUM_OF_ROWS - 1; row >= 0; row--) {
+			for (int column = NUM_OF_COLUMNS - 1; column >= 0; column--) {
 				System.out.print(cells[column][row]);
 			}
 			System.out.println();

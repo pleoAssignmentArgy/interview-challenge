@@ -1,7 +1,6 @@
 package io.pleo.assignment;
 
 import io.pleo.assignment.model.Structure;
-import io.pleo.assignment.util.Parser;
 
 import static io.pleo.assignment.util.Parser.parse;
 import static java.lang.System.exit;
