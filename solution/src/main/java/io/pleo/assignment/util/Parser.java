@@ -10,11 +10,11 @@ public class Parser {
 	}
 
 	public static Structure parse(String[] args) {
-		if (args == null) {
+		if (args == null || args.length == 0) {
 			throw new IllegalArgumentException("Bad Input");
 		}
 		String vector = args[0];
-		if (properlyFormatted(vector)) {
+		if (surroundedByBrackets(vector)) {
 			int[] intArray = inputToIntArray(vector.substring(1, vector.length() - 1).split(","));
 			return new Structure(intArray);
 		} else {
@@ -22,11 +22,14 @@ public class Parser {
 		}
 	}
 
-	private static boolean properlyFormatted(String arg) {
+	private static boolean surroundedByBrackets(String arg) {
+		if (arg.isEmpty()) {
+			throw new IllegalArgumentException("Bad input");
+		}
 		return arg.charAt(0) == '[' && arg.charAt(arg.length() - 1) == ']';
 	}
 
-	static int[] inputToIntArray(String[] args) {
+	public static int[] inputToIntArray(String[] args) {
 		int[] res = new int[args.length];
 		for (int i = 0; i < args.length; i++) {
 			res[i] = parseInt(args[i]);

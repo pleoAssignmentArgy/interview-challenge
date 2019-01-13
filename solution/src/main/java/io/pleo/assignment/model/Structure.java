@@ -98,12 +98,15 @@ public class Structure {
 	}
 
 	public void print() {
+		System.out.println("Structure: ");
+		System.out.println("-----------");
 		for (int column = 0; column < NUM_OF_COLUMNS; column++) {
 			for (int row = 0; row < NUM_OF_ROWS; row++) {
 				System.out.print(cells[column][row]);
 			}
 			System.out.println();
 		}
+		System.out.println("-----------");
 	}
 
 	public int countWaterUnits() {
