@@ -29,7 +29,7 @@ Solutions for the algorithmic part are possible to find online. Please be advise
 Happy hacking 😁!
 
 
-##Solution
+## Solution
 
 The solution is based in three basic concepts:
 * Modelling the structure in a 2x2 Table
