@@ -63,7 +63,7 @@ In order to map the user input we loop the table and set 1s in the cells that co
 
 > `(at_least_one_block, at_least_one_empty, at_least_one_block)` 
 
-for multiple times in the row. Filling the cell with water, takes place only if the column does not have a hole in its bottom and if the cell is empty (i.e. not a block or water). 
+for at least one time in the row. Filling the cell with water, takes place only if the column does not have a hole in its bottom and if the cell is empty (i.e. not a block or water). 
  
  After the rain the structure above looks like this:
  
