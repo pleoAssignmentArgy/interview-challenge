@@ -240,9 +240,9 @@ public class StructureTest {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				if (i == j) { //4 water items
-					cells[i][j] = new Cell(new Coordinates(i, j), WATER);
+					cells[i][j] = new Cell(WATER);
 				} else {
-					cells[i][j] = new Cell(new Coordinates(i, j), BLOCK);
+					cells[i][j] = new Cell(BLOCK);
 				}
 			}
 		}

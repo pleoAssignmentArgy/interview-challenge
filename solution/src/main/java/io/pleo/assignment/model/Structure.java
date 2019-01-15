@@ -43,7 +43,7 @@ public class Structure {
 		Cell[][] result = new Cell[numOfColumns][numOfRows];
 		for (int column = 0; column < numOfColumns; column++) {
 			for (int row = 0; row < numOfRows; row++) {
-				result[column][row] = new Cell(new Coordinates(column, row), EMPTY);
+				result[column][row] = new Cell(EMPTY);
 			}
 		}
 		return result;
@@ -61,14 +61,14 @@ public class Structure {
 			Cell firstBlockCandidate = cells[column][row];
 
 			if (firstBlockCandidate.isBlock()) {
-				for (int column2 = firstBlockCandidate.coordinates().column(); column2 < NUM_OF_COLUMNS; column2++) {
+				for (int column2 = column; column2 < NUM_OF_COLUMNS; column2++) {
 
 					Cell emptyCandidate = cells[column2][row];
 					if (emptyCandidate.isEmpty()) {
-						for (int column3 = emptyCandidate.coordinates().column(); column3 < NUM_OF_COLUMNS; column3++) {
+						for (int column3 = column2; column3 < NUM_OF_COLUMNS; column3++) {
 							Cell secondBlockCandidate = cells[column3][row];
 							if (secondBlockCandidate.isBlock()) {
-								coverWithWaterEmptyCellsBetween(firstBlockCandidate, secondBlockCandidate);
+								coverWithWaterEmptyCellsBetween(column, column3, row);
 								firstBlockCandidate = secondBlockCandidate;
 							}
 						}
@@ -78,12 +78,7 @@ public class Structure {
 		}
 	}
 
-	private void coverWithWaterEmptyCellsBetween(Cell firstBlockCandidate, Cell secondBlockCandidate) {
-		int row = firstBlockCandidate.coordinates().row();
-
-		int leftColumn = firstBlockCandidate.coordinates().column();
-		int rightColumn = secondBlockCandidate.coordinates().column();
-
+	private void coverWithWaterEmptyCellsBetween(int leftColumn, int rightColumn, int row) {
 		for (int i = leftColumn; i <= rightColumn; i++) {
 			if (columnContainsHole(i)) {
 				return;

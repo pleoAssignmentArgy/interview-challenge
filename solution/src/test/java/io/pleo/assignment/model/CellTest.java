@@ -10,13 +10,13 @@ public class CellTest {
 
 	@Test
 	public void shouldNotReportEmpty_ifNodeContainsWater() {
-		subject = new Cell(new Coordinates(0, 0), Cell.WATER);
+		subject = new Cell(Cell.WATER);
 		assertFalse(subject.isEmpty());
 	}
 
 	@Test
 	public void shouldNotReportEmpty_ifNodeContainsBlock() {
-		subject = new Cell(new Coordinates(0, 0), Cell.BLOCK);
+		subject = new Cell(Cell.BLOCK);
 		assertFalse(subject.isEmpty());
 	}
 }
