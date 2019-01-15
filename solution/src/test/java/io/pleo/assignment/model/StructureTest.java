@@ -285,4 +285,35 @@ public class StructureTest {
 		int waterUnits = subject.countWaterUnits();
 		assertThat(waterUnits, is(0));
 	}
+
+
+	@Test
+	public void counts_waterUnits_example_towerStructure() {
+		int[] input = {5};
+		subject = new Structure(input);
+		subject.rain();
+
+		int waterUnits = subject.countWaterUnits();
+		assertThat(waterUnits, is(0));
+	}
+
+	@Test
+	public void counts_waterUnits_example_twoItemOnlyStructure() {
+		int[] input = {5, 2};
+		subject = new Structure(input);
+		subject.rain();
+
+		int waterUnits = subject.countWaterUnits();
+		assertThat(waterUnits, is(0));
+	}
+
+	@Test
+	public void counts_waterUnits_example_CupStructure() {
+		int[] input = {5, 2, 5};
+		subject = new Structure(input);
+		subject.rain();
+
+		int waterUnits = subject.countWaterUnits();
+		assertThat(waterUnits, is(3));
+	}
 }
